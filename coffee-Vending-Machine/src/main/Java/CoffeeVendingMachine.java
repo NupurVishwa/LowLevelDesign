@@ -48,9 +48,7 @@ public class CoffeeVendingMachine {
     // Refill ingredient
     // ==========================================
 
-    public void refillIngredient(
-            String ingredient,
-            int quantity) {
+    public void refillIngredient(String ingredient, int quantity) {
 
         ingredientStore.refill(ingredient, quantity);
     }
@@ -60,9 +58,7 @@ public class CoffeeVendingMachine {
     // Make Coffee
     // ==========================================
 
-    public void makeCoffee(
-            String coffeeName,
-            Payment payment) {
+    public void makeCoffee(String coffeeName, Payment payment) {
 
         // --------------------------------------
         // Step 1: Find recipe
@@ -80,8 +76,7 @@ public class CoffeeVendingMachine {
         // Step 2: Check payment amount
         // --------------------------------------
 
-        if (payment.getAmount()
-                < recipe.getPrice()) {
+        if (payment.getAmount() < recipe.getPrice()) {
 
             throw new IllegalStateException("Insufficient payment. " + "Price = " + recipe.getPrice());
         }
@@ -91,8 +86,7 @@ public class CoffeeVendingMachine {
         // Step 3: Check ingredients
         // --------------------------------------
 
-        if (!ingredientStore.hasIngredients(
-                recipe.getIngredients())) {
+        if (!ingredientStore.hasIngredients(recipe.getIngredients())) {
 
             throw new IllegalStateException("Insufficient ingredients");
         }
@@ -102,12 +96,10 @@ public class CoffeeVendingMachine {
         // Step 4: Process payment
         // --------------------------------------
 
-        PaymentProcessor paymentProcessor =
-                PaymentProcessorFactory.getProcessor(payment.getPaymentType());
+        PaymentProcessor paymentProcessor = PaymentProcessorFactory.getProcessor(payment.getPaymentType());
 
 
-        boolean paymentSuccessful =
-                paymentProcessor.PaymentProcessor(payment);
+        boolean paymentSuccessful = paymentProcessor.PaymentProcessor(payment);
 
         if (!paymentSuccessful) {
 

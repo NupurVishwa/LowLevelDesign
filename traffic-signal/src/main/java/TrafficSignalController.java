@@ -17,17 +17,13 @@ public class TrafficSignalController {
     // GREEN  = 5 seconds
     // YELLOW = 2 seconds
     // RED    = 3 seconds
-    private final Map<Direction, Map<String, Integer>>
-            signalDurations;
+    private final Map<Direction, Map<String, Integer>> signalDurations;
 
     // Scheduler is used to automatically change signals
     // after a configured amount of time.
-    private final ScheduledExecutorService scheduler =
-            Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
-    public TrafficSignalController(
-            Map<Direction, TrafficLight> signals,
-            Map<Direction, Map<String, Integer>> signalDurations) {
+    public TrafficSignalController(Map<Direction, TrafficLight> signals, Map<Direction, Map<String, Integer>> signalDurations) {
 
         this.signals = signals;
         this.signalDurations = signalDurations;
@@ -36,10 +32,7 @@ public class TrafficSignalController {
     // Start the traffic system with a particular direction.
     public void start(Direction direction) {
 
-        System.out.println(
-                "Starting traffic signal with "
-                        + direction
-        );
+        System.out.println("Starting traffic signal with " + direction);
 
         switchToGreen(direction);
     }
@@ -47,11 +40,7 @@ public class TrafficSignalController {
     // Make a particular direction GREEN.
     public void switchToGreen(Direction direction) {
 
-        System.out.println(
-                "\nSwitching "
-                        + direction
-                        + " to GREEN"
-        );
+        System.out.println("\nSwitching " + direction + " to GREEN");
 
         // First make every other direction RED.
         //
@@ -61,76 +50,43 @@ public class TrafficSignalController {
 
             if (light.getDirection() != direction) {
 
-                light.setState(
-                        new RedState()
-                );
+                light.setState(new RedState());
             }
         }
 
         // Make selected direction GREEN.
-        TrafficLight light =
-                signals.get(direction);
-
-        light.setState(
-                new GreenState()
-        );
+        TrafficLight light = signals.get(direction);
+        light.setState(new GreenState());
 
         // Execute the GREEN state's behavior.
         light.handle(this);
     }
 
     // Schedule the next state.
-    public void scheduleNextState(
-            TrafficLight trafficLight,
-            SignalState nextState) {
+    public void scheduleNextState(TrafficLight trafficLight, SignalState nextState) {
+        Direction direction = trafficLight.getDirection();
 
-        Direction direction =
-                trafficLight.getDirection();
-
-        String currentState =
-                trafficLight.getState().getName();
+        String currentState = trafficLight.getState().getName();
 
         // Find how long current state should remain active.
-        int duration =
-                getSignalDuration(
-                        direction,
-                        currentState
-                );
+        int duration = getSignalDuration(direction, currentState);
 
-        System.out.println(
-                direction
-                        + " stays "
-                        + currentState
-                        + " for "
-                        + duration
-                        + " seconds"
-        );
+        System.out.println(direction + " stays " + currentState + " for " + duration + " seconds");
 
         // After duration seconds, move to next state.
-        scheduler.schedule(
-                () -> {
-
-                    trafficLight.setState(
-                            nextState
-                    );
+        scheduler.schedule(() -> { trafficLight.setState(nextState);
 
                     // Let the new state execute its behavior.
                     trafficLight.handle(this);
-
-                },
+                    },
                 duration,
                 TimeUnit.SECONDS
         );
     }
 
     // Get configured duration for a state.
-    public int getSignalDuration(
-            Direction direction,
-            String state) {
-
-        return signalDurations
-                .get(direction)
-                .getOrDefault(state, 3);
+    public int getSignalDuration(Direction direction, String state) {
+        return signalDurations.get(direction).getOrDefault(state, 3);
     }
 
     // Round-robin logic.
@@ -139,18 +95,12 @@ public class TrafficSignalController {
     // SOUTH → EAST
     // EAST  → WEST
     // WEST  → NORTH
-    public Direction getNextDirection(
-            Direction currentDirection) {
+    public Direction getNextDirection(Direction currentDirection) {
+        Direction[] directions = Direction.values();
 
-        Direction[] directions =
-                Direction.values();
+        int currentIndex = currentDirection.ordinal();
 
-        int currentIndex =
-                currentDirection.ordinal();
-
-        int nextIndex =
-                (currentIndex + 1)
-                        % directions.length;
+        int nextIndex = (currentIndex + 1) % directions.length;
 
         return directions[nextIndex];
     }
@@ -159,13 +109,9 @@ public class TrafficSignalController {
     //
     // Example:
     // Someone wants EAST to become GREEN immediately.
-    public void manualOverride(
-            Direction direction) {
+    public void manualOverride(Direction direction) {
 
-        System.out.println(
-                "\nMANUAL OVERRIDE → "
-                        + direction
-        );
+        System.out.println("\nMANUAL OVERRIDE → " + direction);
 
         // Immediately make selected direction GREEN.
         switchToGreen(direction);

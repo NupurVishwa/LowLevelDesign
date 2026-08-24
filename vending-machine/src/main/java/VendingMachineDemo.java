@@ -1,6 +1,6 @@
 import VendingMachine.VendingMachine;
 import VendingMachine.Product;
-import VendingMachine.Coin;git status
+import VendingMachine.Coin;
 public class VendingMachineDemo {
 
     public static void main(String[] args) {
