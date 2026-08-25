@@ -1,0 +1,1 @@
+public class SkillBasedJobMatching implements JobMatchingStrategy { public boolean matches(User user,JobPosting job){String text=(job.getTitle()+" "+job.getDescription()).toLowerCase(); for(Skill s:user.getProfile().getSkills()) if(text.contains(s.getName().toLowerCase())) return true; return false;} }
