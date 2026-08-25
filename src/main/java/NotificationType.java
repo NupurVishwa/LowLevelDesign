@@ -1,0 +1,7 @@
+enum NotificationType {
+
+    CONNECTION_REQUEST,
+    CONNECTION_ACCEPTED,
+    MESSAGE,
+    JOB_MATCH
+}
