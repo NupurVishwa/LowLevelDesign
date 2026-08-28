@@ -1,1 +1,28 @@
-public class Connection { private final int id; private final User sender,receiver; private ConnectionStatus status=ConnectionStatus.PENDING; public Connection(int id,User sender,User receiver){this.id=id;this.sender=sender;this.receiver=receiver;} public int getId(){return id;} public User getSender(){return sender;} public User getReceiver(){return receiver;} public ConnectionStatus getStatus(){return status;} public void accept(){status=ConnectionStatus.ACCEPTED;} public void reject(){status=ConnectionStatus.REJECTED;} }
+public class Connection {
+    private final int id;
+    private final User sender, receiver;
+    private ConnectionStatus status=ConnectionStatus.PENDING;
+    public Connection(int id,User sender,User receiver){
+        this.id=id;
+        this.sender=sender;
+        this.receiver=receiver;
+    }
+    public int getId(){
+        return id;
+    }
+    public User getSender(){
+        return sender;
+    }
+    public User getReceiver(){
+        return receiver;
+    }
+    public ConnectionStatus getStatus(){
+        return status;
+    }
+    public void accept(){
+        status=ConnectionStatus.ACCEPTED;
+    }
+    public void reject(){
+        status=ConnectionStatus.REJECTED;
+    }
+}

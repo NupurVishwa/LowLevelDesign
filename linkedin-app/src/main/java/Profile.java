@@ -1,2 +1,23 @@
 import java.util.*;
-public class Profile { private final List<Skill> skills=new ArrayList<>(); private final List<Education> education=new ArrayList<>(); private final List<Experience> experience=new ArrayList<>(); public void addSkill(Skill s){skills.add(s);} public void addEducation(Education e){education.add(e);} public void addExperience(Experience e){experience.add(e);} public List<Skill> getSkills(){return skills;} public List<Education> getEducation(){return education;} public List<Experience> getExperience(){return experience;} }
+public class Profile {
+    private final List<Skill> skills=new ArrayList<>();
+    private final List<Education> education=new ArrayList<>();
+    private final List<Experience> experience=new ArrayList<>();
+    public void addSkill(Skill s){skills.add(s);
+    }
+    public void addEducation(Education e){
+        education.add(e);
+    }
+    public void addExperience(Experience e){
+        experience.add(e);
+    }
+    public List<Skill> getSkills(){
+        return skills;
+    }
+    public List<Education> getEducation(){
+        return education;
+    }
+    public List<Experience> getExperience(){
+        return experience;
+    }
+}

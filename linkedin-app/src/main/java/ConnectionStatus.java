@@ -1,1 +1,3 @@
-public enum ConnectionStatus { PENDING, ACCEPTED, REJECTED }
+public enum ConnectionStatus {
+    PENDING, ACCEPTED, REJECTED
+}
