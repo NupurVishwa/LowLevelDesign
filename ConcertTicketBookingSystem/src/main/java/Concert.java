@@ -18,17 +18,7 @@ public class Concert {
     private final List<Seat> seats;
 
 
-    public Concert(
-            String id,
-            String concertName,
-            String artist,
-            String description,
-            String venue,
-            String city,
-            LocalDateTime dateTime,
-            int durationInMinutes,
-            List<Seat> seats
-    ) {
+    public Concert(String id, String concertName, String artist, String description, String venue, String city, LocalDateTime dateTime, int durationInMinutes, List<Seat> seats) {
 
         this.id = id;
         this.concertName = concertName;
@@ -99,9 +89,7 @@ public class Concert {
     @Override
     public String toString() {
 
-        return "Concert{" +
-                "id='" + id + '\'' +
-                ", concertName='" + concertName + '\'' +
+        return "Concert{" + "id='" + id + '\'' + ", concertName='" + concertName + '\'' +
                 ", artist='" + artist + '\'' +
                 ", venue='" + venue + '\'' +
                 ", city='" + city + '\'' +
