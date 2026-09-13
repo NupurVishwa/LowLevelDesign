@@ -11,10 +11,7 @@ public class Driver {
     private Vehicle vehicle;
     private DriverStatus status;
 
-    public Driver(String id,
-                  String name,
-                  Location currentLocation,
-                  Vehicle vehicle) {
+    public Driver(String id, String name, Location currentLocation, Vehicle vehicle) {
 
         this.id = id;
         this.name = name;
@@ -53,10 +50,6 @@ public class Driver {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", vehicle=" + vehicle +
-                '}';
+        return "Driver{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", vehicle=" + vehicle + '}';
     }
 }

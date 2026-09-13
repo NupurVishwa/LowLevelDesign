@@ -23,26 +23,20 @@ public class RideSharingService {
     private final PricingStrategy
             pricingStrategy;
 
-    public RideSharingService(
-            DriverMatchingStrategy driverMatchingStrategy,
-            PricingStrategy pricingStrategy) {
+    public RideSharingService(DriverMatchingStrategy driverMatchingStrategy, PricingStrategy pricingStrategy) {
 
         this.drivers = new ArrayList<>();
 
-        this.driverMatchingStrategy =
-                driverMatchingStrategy;
+        this.driverMatchingStrategy = driverMatchingStrategy;
 
-        this.pricingStrategy =
-                pricingStrategy;
+        this.pricingStrategy = pricingStrategy;
     }
 
     public void addDriver(Driver driver) {
 
         drivers.add(driver);
 
-        System.out.println(
-                "Driver added: " + driver.getName()
-        );
+        System.out.println("Driver added: " + driver.getName());
     }
 
     public Trip requestRide(
@@ -52,46 +46,25 @@ public class RideSharingService {
             RideType rideType) {
 
         System.out.println();
-        System.out.println(
-                "===== RIDE REQUEST ====="
-        );
+        System.out.println("===== RIDE REQUEST =====");
 
-        System.out.println(
-                "Rider: " + user.getName()
-        );
+        System.out.println("Rider: " + user.getName());
 
-        System.out.println(
-                "Pickup: " + pickup
-        );
+        System.out.println("Pickup: " + pickup);
 
-        System.out.println(
-                "Destination: " + destination
-        );
+        System.out.println("Destination: " + destination);
 
-        Trip trip = new Trip(
-                UUID.randomUUID().toString(),
-                user,
-                pickup,
-                destination,
-                pickup.distanceTo(destination)
-        );
+        Trip trip = new Trip(UUID.randomUUID().toString(), user, pickup, destination, pickup.distanceTo(destination));
 
         // Observer registration
         trip.addObserver(new Rider(user));
 
         // Strategy Pattern
-        Driver driver =
-                driverMatchingStrategy.findDriver(
-                        pickup,
-                        rideType,
-                        drivers
-                );
+        Driver driver = driverMatchingStrategy.findDriver(pickup, rideType, drivers);
 
         if (driver == null) {
 
-            System.out.println(
-                    "No suitable driver available."
-            );
+            System.out.println("No suitable driver available.");
 
             return null;
         }
@@ -100,26 +73,16 @@ public class RideSharingService {
         trip.assignDriver(driver);
 
         // Strategy Pattern
-        double fare =
-                pricingStrategy.calculateFare(trip);
+        double fare = pricingStrategy.calculateFare(trip);
 
         trip.setFare(fare);
 
         System.out.println();
-        System.out.println(
-                "Driver Assigned: "
-                        + driver.getName()
-        );
+        System.out.println("Driver Assigned: " + driver.getName());
 
-        System.out.println(
-                "Vehicle: "
-                        + driver.getVehicle()
-        );
+        System.out.println("Vehicle: " + driver.getVehicle());
 
-        System.out.printf(
-                "Estimated Fare: ₹%.2f%n",
-                fare
-        );
+        System.out.printf("Estimated Fare: ₹%.2f%n", fare);
 
         return trip;
     }
@@ -127,9 +90,7 @@ public class RideSharingService {
     public void startRide(Trip trip) {
 
         System.out.println();
-        System.out.println(
-                "===== STARTING RIDE ====="
-        );
+        System.out.println("===== STARTING RIDE =====");
 
         trip.startTrip();
     }
@@ -137,15 +98,10 @@ public class RideSharingService {
     public void completeRide(Trip trip) {
 
         System.out.println();
-        System.out.println(
-                "===== COMPLETING RIDE ====="
-        );
+        System.out.println("===== COMPLETING RIDE =====");
 
         trip.completeTrip();
 
-        System.out.printf(
-                "Final Fare: ₹%.2f%n",
-                trip.getFare()
-        );
+        System.out.printf("Final Fare: ₹%.2f%n", trip.getFare());
     }
 }

@@ -7,14 +7,10 @@ import Enums.RideType;
 
 import java.util.List;
 
-public class NearestDriverMatchingStrategy
-        implements DriverMatchingStrategy {
+public class NearestDriverMatchingStrategy implements DriverMatchingStrategy {
 
     @Override
-    public Driver findDriver(
-            Location pickupLocation,
-            RideType rideType,
-            List<Driver> drivers) {
+    public Driver findDriver(Location pickupLocation, RideType rideType, List<Driver> drivers) {
 
         Driver nearestDriver = null;
         double minimumDistance = Double.MAX_VALUE;
@@ -29,9 +25,7 @@ public class NearestDriverMatchingStrategy
                 continue;
             }
 
-            double distance =
-                    driver.getCurrentLocation()
-                            .distanceTo(pickupLocation);
+            double distance = driver.getCurrentLocation().distanceTo(pickupLocation);
 
             if (distance < minimumDistance) {
                 minimumDistance = distance;

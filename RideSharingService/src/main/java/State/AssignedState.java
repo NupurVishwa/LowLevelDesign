@@ -9,9 +9,7 @@ public class AssignedState implements TripState {
     @Override
     public void assignDriver(Trip trip, Driver driver) {
 
-        throw new IllegalStateException(
-                "Driver is already assigned"
-        );
+        throw new IllegalStateException("Driver is already assigned");
     }
 
     @Override
@@ -27,8 +25,6 @@ public class AssignedState implements TripState {
     @Override
     public void completeTrip(Trip trip) {
 
-        throw new IllegalStateException(
-                "Trip has not started yet"
-        );
+        throw new IllegalStateException("Trip has not started yet");
     }
 }

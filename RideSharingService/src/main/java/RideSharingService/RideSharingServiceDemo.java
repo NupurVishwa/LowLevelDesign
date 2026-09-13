@@ -29,91 +29,37 @@ public class RideSharingServiceDemo {
         // USERS
         // ------------------------------------
 
-        User user1 =
-                new User(
-                        "U1",
-                        "Nupur",
-                        "9876543210"
-                );
+        User user1 = new User("U1", "Nupur", "9876543210");
 
         User user2 =
-                new User(
-                        "U2",
-                        "Rahul",
-                        "9876543211"
-                );
+                new User("U2", "Rahul", "9876543211");
 
         // ------------------------------------
         // VEHICLES
         // ------------------------------------
 
-        Vehicle car1 =
-                new Vehicle(
-                        "V1",
-                        "GJ01AB1234",
-                        RideType.SEDAN
-                );
+        Vehicle car1 = new Vehicle("V1", "GJ01AB1234", RideType.SEDAN);
 
         Vehicle car2 =
-                new Vehicle(
-                        "V2",
-                        "GJ01CD5678",
-                        RideType.SUV
-                );
+                new Vehicle("V2", "GJ01CD5678", RideType.SUV);
 
-        Vehicle bike =
-                new Vehicle(
-                        "V3",
-                        "GJ01EF9999",
-                        RideType.BIKE
-                );
+        Vehicle bike = new Vehicle("V3", "GJ01EF9999", RideType.BIKE);
 
         // ------------------------------------
         // DRIVERS
         // ------------------------------------
 
-        Driver driver1 =
-                new Driver(
-                        "D1",
-                        "Amit",
-                        new Location(
-                                23.0225,
-                                72.5714
-                        ),
-                        car1
-                );
+        Driver driver1 = new Driver("D1", "Amit", new Location(23.0225, 72.5714), car1);
 
-        Driver driver2 =
-                new Driver(
-                        "D2",
-                        "Raj",
-                        new Location(
-                                23.0300,
-                                72.5800
-                        ),
-                        car2
-                );
+        Driver driver2 = new Driver("D2", "Raj", new Location(23.0300, 72.5800), car2);
 
-        Driver driver3 =
-                new Driver(
-                        "D3",
-                        "Vikram",
-                        new Location(
-                                23.0500,
-                                72.5900
-                        ),
-                        bike
-                );
+        Driver driver3 = new Driver("D3", "Vikram", new Location(23.0500, 72.5900), bike);
 
         // ------------------------------------
         // SERVICE
         // ------------------------------------
 
-        RideSharingService service =
-                new RideSharingService(
-                        new NearestDriverMatchingStrategy(),
-                        new VehicleBasedPricingStrategy()
-                );
+        RideSharingService service = new RideSharingService(new NearestDriverMatchingStrategy(), new VehicleBasedPricingStrategy());
 
         // ------------------------------------
         // ADD DRIVERS
@@ -127,25 +73,11 @@ public class RideSharingServiceDemo {
         // REQUEST RIDE
         // ------------------------------------
 
-        Location pickup =
-                new Location(
-                        23.0250,
-                        72.5700
-                );
+        Location pickup = new Location(23.0250, 72.5700);
 
-        Location destination =
-                new Location(
-                        23.0500,
-                        72.6000
-                );
+        Location destination = new Location(23.0500, 72.6000);
 
-        Trip trip =
-                service.requestRide(
-                        user1,
-                        pickup,
-                        destination,
-                        RideType.SEDAN
-                );
+        Trip trip = service.requestRide(user1, pickup, destination, RideType.SEDAN);
 
         // ------------------------------------
         // START RIDE
@@ -154,9 +86,7 @@ public class RideSharingServiceDemo {
         if (trip != null) {
 
             System.out.println();
-            System.out.println(
-                    "Current Trip:"
-            );
+            System.out.println("Current Trip:");
 
             System.out.println(trip);
 
@@ -169,9 +99,7 @@ public class RideSharingServiceDemo {
             service.completeRide(trip);
 
             System.out.println();
-            System.out.println(
-                    "Final Trip:"
-            );
+            System.out.println("Final Trip:");
 
             System.out.println(trip);
         }

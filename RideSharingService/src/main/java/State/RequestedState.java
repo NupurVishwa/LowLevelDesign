@@ -24,16 +24,12 @@ public class RequestedState implements TripState {
     @Override
     public void startTrip(Trip trip) {
 
-        throw new IllegalStateException(
-                "Cannot start trip before driver is assigned"
-        );
+        throw new IllegalStateException("Cannot start trip before driver is assigned");
     }
 
     @Override
     public void completeTrip(Trip trip) {
 
-        throw new IllegalStateException(
-                "Cannot complete a requested trip"
-        );
+        throw new IllegalStateException("Cannot complete a requested trip");
     }
 }

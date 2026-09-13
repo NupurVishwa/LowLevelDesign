@@ -8,9 +8,7 @@ public class Vehicle {
     private final String vehicleNumber;
     private final RideType rideType;
 
-    public Vehicle(String vehicleId,
-                   String vehicleNumber,
-                   RideType rideType) {
+    public Vehicle(String vehicleId, String vehicleNumber, RideType rideType) {
 
         this.vehicleId = vehicleId;
         this.vehicleNumber = vehicleNumber;

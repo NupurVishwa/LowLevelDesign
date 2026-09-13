@@ -28,11 +28,7 @@ public class Trip {
 
     private final List<TripObserver> observers;
 
-    public Trip(String id,
-                User rider,
-                Location pickupLocation,
-                Location dropLocation,
-                double distance) {
+    public Trip(String id, User rider, Location pickupLocation, Location dropLocation, double distance) {
 
         this.id = id;
         this.rider = rider;
@@ -125,18 +121,6 @@ public class Trip {
     @Override
     public String toString() {
 
-        return "Trip{" +
-                "id='" + id + '\'' +
-                ", rider=" + rider.getName() +
-                ", driver=" +
-                (driver != null ? driver.getName() : "Not Assigned") +
-                ", distance=" +
-                String.format("%.2f", distance) +
-                " km" +
-                ", fare=" +
-                String.format("%.2f", fare) +
-                ", status=" +
-                status +
-                '}';
+        return "Trip{" + "id='" + id + '\'' + ", rider=" + rider.getName() + ", driver=" + (driver != null ? driver.getName() : "Not Assigned") + ", distance=" + String.format("%.2f", distance) + " km" + ", fare=" + String.format("%.2f", fare) + ", status=" + status + '}';
     }
 }

@@ -2,8 +2,7 @@ package Strategy;
 
 import Entities.Trip;
 
-public class FlatRatePricingStrategy
-        implements PricingStrategy {
+public class FlatRatePricingStrategy implements PricingStrategy {
 
     private final double ratePerKm;
 

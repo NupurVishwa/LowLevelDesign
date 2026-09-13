@@ -3,19 +3,13 @@ package Strategy;
 import Entities.Trip;
 import Enums.RideType;
 
-public class VehicleBasedPricingStrategy
-        implements PricingStrategy {
+public class VehicleBasedPricingStrategy implements PricingStrategy {
 
-    @Override
-    public double calculateFare(Trip trip) {
+    @Override public double calculateFare(Trip trip) {
 
         double baseFare;
         double ratePerKm;
-
-        RideType type =
-                trip.getDriver()
-                        .getVehicle()
-                        .getRideType();
+        RideType type = trip.getDriver().getVehicle().getRideType();
 
         switch (type) {
 
@@ -35,9 +29,7 @@ public class VehicleBasedPricingStrategy
                 break;
 
             default:
-                throw new IllegalArgumentException(
-                        "Unsupported ride type"
-                );
+                throw new IllegalArgumentException("Unsupported ride type");
         }
 
         return baseFare + trip.getDistance() * ratePerKm;
