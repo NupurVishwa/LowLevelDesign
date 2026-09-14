@@ -155,7 +155,11 @@ public class CourseOffering {
         // a CourseOffering object first.
 
 
-        private String id; private Course course; private Professor professor; private TimeSlot timeSlot; private int capacity;
+        private String id;
+        private Course course;
+        private Professor professor;
+        private TimeSlot timeSlot;
+        private int capacity;
         // Stores the values that will later be used to create
         // the CourseOffering object.
 
