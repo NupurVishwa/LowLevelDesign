@@ -1,0 +1,7 @@
+package Entities;
+
+import java.util.List;
+
+public interface Playable {
+    List<Song> getTracks();
+}
